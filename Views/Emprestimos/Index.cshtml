@@ -1,0 +1,168 @@
+﻿@using Newtonsoft.Json
+@model IEnumerable<BIBLIOTECA_APOSTILA.Models.Emprestimos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Empréstimos</h1>
+
+@{ if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sn close-alert" aria-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+}
+
+@{ if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sn close-alert" aria-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+}
+
+<table id="myTable" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Situacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.data_emprestimo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.data_devolucao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.data_pos_devolvida)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Login)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Situacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data_emprestimo)
+                </td>
+                @{
+                    var styleStatus = "text-whrite bg-success";
+                    if (item.Situacao == Emprestimos.SituacaoEmprestimo.Aberto)
+                    {
+                        styleStatus = "";
+                    }
+                    else
+                    {
+                        if(DateTime.Now.Date > item.data_devolucao)
+                        {
+                            styleStatus = "bg-danger";
+                        }
+                        else if (DateTime.Now.Date.Equals(item.data_devolucao))
+                        {
+                            styleStatus = "bg-warning";
+                        }
+                    }
+                }
+                <td class="@styleStatus">
+                    @Html.DisplayFor(modelItem => item.data_devolucao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data_pos_devolvida)
+                </td>
+                <td>
+                    @{
+                        var display = "display:none";
+                        var display1 = "display:none";
+                        var display2 = "";
+                        if(item.Multa > 0)
+                        {
+                            display = "";
+                        }
+                        else
+                        {
+                            display1 = "";
+                        }
+                        if(item.Situacao == Emprestimos.SituacaoEmprestimo.Devolvido)
+                        {
+                            display = "display:none";
+                            display1 = "display:none";
+                            display2 = "display:none";
+                        }
+                    }
+                    <a style="@display2" asp-action="Edit" class="btn btn-outline-warning" asp-route-id="@item.Id">Modificar</a> |
+                    <a asp-action="Details" class="btn btn-outline-primary" asp-route-id="@item.Id">Detalhes</a>
+                    <form style="@display1" asp-controller="Emprestimos" asp-action="Devolver" method="post" asp-route-id="@item.Id">
+                        <button type="submit" class="btn btn-outline-info">Devolver</button>
+                        <input type="hidden" data-val="true" data-val-required="codigo requerido" name="Situacao" value="@item.Id" />
+                    </form>
+
+                    <!-- Button trigger modal -->
+                    <button style="@display" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#Devolver-@item.Id">
+                        Devolver
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="Devolver-@item.Id" tabindex="-1" aria-labelledby="DevolverLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="DevolverLabel">Atenção!</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar!"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Cliente com multa em aberto no valor de @item.MultaToString
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>
+                                    <form asp-controller="Emprestimos" asp-action="Devolver" method="post" asp-route-id="@item.Id">
+                                        <button type="submit" class="btn btn-outline-info">Efetuar pagamento</button>
+                                        <input type="hidden" data-val="true" data-val-required="codigo requerido" name="Situacao" value="@item.Id" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>   
+        }
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-info">Incluir</a>
+</p>
+
+@section Scripts{
+    <script>$(document).ready( function() {
+    $('#myTable').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json" 
+        }
+    });
+});</script>
+}

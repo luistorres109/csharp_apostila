@@ -1,0 +1,65 @@
+﻿@model BIBLIOTECA_APOSTILA.Models.Emprestimos
+@using static BIBLIOTECA_APOSTILA.Models.Emprestimos
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4>Editar Emprestimos</h4>
+<hr />
+<div>
+    <a class="btn btn-outline-info" asp-action="Index">Voltar</a>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CodigoUsuario" class="control-label"></label>
+                <select asp-for="CodigoUsuario" class="form-control" asp-items="ViewBag.CodigoUsuario"></select>
+                <span asp-validation-for="CodigoUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodigoCliente" class="control-label"></label>
+                <select asp-for="CodigoCliente" class="form-control" asp-items="ViewBag.CodigoCliente"></select>
+                <span asp-validation-for="CodigoCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodigoItem" class="control-label"></label>
+                <select asp-for="CodigoItem" class="form-control" asp-items="ViewBag.CodigoItem"></select>
+                <span asp-validation-for="CodigoItem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="data_emprestimo" class="control-label"></label>
+                <input asp-for="data_emprestimo" type="date" class="form-control"
+                       value="@(Model.data_emprestimo.HasValue ? Model.data_emprestimo.Value.ToString("yyyy-MM-dd") : "")" />
+                <span asp-validation-for="data_emprestimo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="data_devolucao" class="control-label"></label>
+                <input asp-for="data_devolucao" type="date" class="form-control"
+                       value="@(Model.data_devolucao.HasValue ? Model.data_devolucao.Value.ToString("yyyy-MM-dd") : "")" />
+                <span asp-validation-for="data_devolucao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Situacao" class="control-label"></label>
+                <select asp-for="Situacao" class="form-control" asp-items="Html.GetEnumSelectList<BIBLIOTECA_APOSTILA.Models.Emprestimos.SituacaoEmprestimo>()"></select>
+                <span asp-validation-for="Situacao" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Modificar" class="btn btn-outline-primary" />
+            </div>
+            <input type="hidden" asp-for="data_pos_devolvida" />
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

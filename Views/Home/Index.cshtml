@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">BIBLIOTECA APOSTILA</h1>
+    <br/>
+    <br/>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 text-center">
+                <h2>Cadastros</h2>
+                <a style="text-decoration:none" class="text-dark" asp-area="" asp-controller="Pessoas" asp-action="Index"><button class="botoesEsquerda">Pessoas</button></a>
+                <a style="text-decoration:none" class="text-dark" asp-area="" asp-controller="Funcionarios" asp-action="Index"><button class="botoesEsquerda">Funcionários</button></a>
+                <a style="text-decoration:none" class="text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index"><button class="botoesEsquerda">Usuários</button></a>
+                <a style="text-decoration:none" class="text-dark" asp-area="" asp-controller="Clientes" asp-action="Index"><button class="botoesEsquerda">Clientes</button></a>
+                <a style="text-decoration:none" class="text-dark" asp-area="" asp-controller="Autores" asp-action="Index"><button class="botoesEsquerda">Autores</button></a>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <h2>Estante</h2>
+                <a style="text-decoration:none" class="text-dark" asp-area="" asp-controller="Apostilas" asp-action="Index"><button class="botoesEsquerda">Apostilas</button></a>
+                <a style="text-decoration:none" class="text-dark" asp-area="" asp-controller="Livros" asp-action="Index"><button class="botoesEsquerda">Livros</button></a>
+                <a style="text-decoration:none" class="text-dark" asp-area="" asp-controller="Revistas" asp-action="Index"><button class="botoesEsquerda">Revistas</button></a>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <h2>Utilitários</h2>
+                <a style="text-decoration:none" class="text-dark" asp-area="" asp-controller="Itens" asp-action="Index"><button class="botoesEsquerda">Itens</button></a>
+                <a style="text-decoration:none" class="text-dark" asp-area="" asp-controller="Materiais" asp-action="Index"><button class="botoesEsquerda">Materiais</button></a>
+            </div>
+        </div>
+    </div>
+</div>
