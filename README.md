@@ -1,27 +1,27 @@
-# 📘 GeneXus 9.0 – Estudos Guiados por Apostila
+# 💻 C# – Exercícios de Apostila
 
-Repositório com códigos e exercícios desenvolvidos durante o treinamento prático com GeneXus 9.0, com base no material técnico interno utilizado pela empresa Infogen Sistemas.
+Repositório com exercícios resolvidos em C#, baseados em apostilas técnicas utilizadas no meu processo de formação na Infogen Sistemas e estudos individuais.
 
-## 📚 Objetivo
+## 🧠 Objetivo
 
-Registrar meu progresso e aprendizado com a ferramenta GeneXus, simulando funcionalidades de sistemas reais em ambiente de estudo.
+Fixar fundamentos da linguagem C#, boas práticas de orientação a objetos e uso de lógica estruturada em projetos básicos.
 
 ## 🛠️ Tecnologias
 
-- GeneXus 9.0
-- SQL Server
-- HTML/CSS básicos (nas telas geradas)
-- ASP.NET (gerado via GX)
+- C#
+- .NET Core (dependendo do exercício)
+- Visual Studio Code / Visual Studio
 
-## 📄 Conteúdos
+## 🔍 Conteúdos
 
-- Criação de estruturas
-- Procedimentos
-- WorkPanels
-- WebPanels
-- Regras e variáveis
-- Transações
+- Tipos de dados
+- Condicionais e laços
+- Funções e métodos
+- Orientação a objetos (POO)
+- Classes, herança e encapsulamento
 
-## 📌 Observações
+## ⚙️ Como rodar
 
-Este projeto não possui integração com banco ou deploy público — é um repositório de estudos
+```bash
+git clone https://github.com/luistorres109/csharp_apostila
+abra os arquivos `.cs` e compile com Visual Studio ou CLI do .NET
