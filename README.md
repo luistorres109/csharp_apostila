@@ -9,7 +9,7 @@ Registrar meu progresso e aprendizado com a ferramenta GeneXus, simulando funcio
 ## 🛠️ Tecnologias
 
 - GeneXus 9.0
-- MySQL
+- SQL Server
 - HTML/CSS básicos (nas telas geradas)
 - ASP.NET (gerado via GX)
 
