@@ -25,4 +25,5 @@ Fixar fundamentos da linguagem C#, boas práticas de orientação a objetos e us
 ```bash
 git clone https://github.com/luistorres109/csharp_apostila
 ```
-abra os arquivos `.cs` e compile com Visual Studio ou CLI do .NET
+
+Abra os arquivos `.cs` e compile com Visual Studio ou CLI do .NET
